@@ -1,21 +1,16 @@
-# Laboratorio #1: Fundamentos de Redes y Topologías Seguras (UTP)
+# Laboratorio 1: Construcción de una Red Doméstica y Conectividad al ISP
 
-Repositorio académico de soporte para la asignatura de **Redes de Datos / Sistemas Colaborativos** de la Licenciatura en Ciberseguridad — **Universidad Tecnológica de Panamá (UTP)**.
+**Institución:** Universidad Tecnológica de Panamá (UTP) — Facultad de Ingeniería en Sistemas Computacionales.  
+**Curso:** Redes Informáticas I.
+**Herramienta:** Cisco Packet Tracer.
 
-## 1. Propósito del Laboratorio
-Diseñar, simular y verificar la conectividad básica de una red local (LAN) aplicando el modelo de referencia **OSI / TCP-IP**, direccionamiento IPv4 y buenas prácticas iniciales de segmentación y control de acceso.
+## Topología y Direccionamiento
+Simulación de una red doméstica (`PC-A` y `PC-B`) conectada a un router inalámbrico (`Wireless-Router-Hogar WRT300N`), módem de cable (`CABLE-PT`), nube del proveedor (`Nube-ISP`) y servidor web (`Servidor-Web`).
 
-## 2. Topología de Red Implementada
-- **Dispositivos Finales:** 2 estaciones de trabajo (PC-01, PC-02) y 1 servidor local.
-- **Dispositivos Intermediarios:** 1 Switch Capa 2 (2960) y 1 Router (ISR 4331).
-- **Esquema de Direccionamiento:** Subred `192.168.10.0/24` (Gateway predeterminado: `192.168.10.1`).
-- **Herramienta de Simulación:** Cisco Packet Tracer.
+- **Segmento Privado (LAN):** Direccionamiento por DHCP en `192.168.0.x` (máscara `255.255.255.0`, puerta de enlace `192.168.0.1`).
+- **Router Doméstico:** IP LAN `192.168.0.1`, servidor DHCP local, traducción de direcciones (NAT) y enlace WAN hacia el ISP.
+- **Servidor Web:** IP estática `200.10.20.5` con servicio HTTP activo.
 
-## 3. Procedimiento Realizado
-1. **Levantamiento físico y lógico:** Interconexión de equipos mediante cableado directo UTP (Copper Straight-Through) en el entorno de simulación.
-2. **Configuración de interfaces:** Asignación de direcciones IP estáticas, máscaras de subred y puerta de enlace en los hosts y la interfaz GigabitEthernet del router.
-3. **Pruebas de conectividad:** Verificación de comunicación extremo a extremo mediante comandos `ping` y `tracert` (ICMP).
-4. **Análisis de tráfico:** Inspección de tramas Ethernet y paquetes ARP/ICMP en modo simulación para validar el encapsulamiento de datos.
-
-## 4. Licencia
-Este proyecto académico se distribuye bajo los términos de la **Licencia MIT** incluida en este repositorio.
+## Roles y Seguridad en la Red
+- **Cliente vs. Servidor:** `PC-A` actúa como cliente solicitando contenido vía navegador web a `200.10.20.5`, mientras que `Servidor-Web` responde entregando la página configurada.
+- **Función del Router:** Separa la red local privada del tráfico externo, asigna direcciones de forma automática y ayuda a proteger los equipos internos frente a la exposición directa en la red pública.
